@@ -4,9 +4,17 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image
 import io
+import gdown
+
+
+
 
 app = Flask(__name__)
 CORS(app)
+file_id = "1ad-AerR2PjwHb4Pam95P3Cp5U-jakAsX"  # Replace with your actual file ID
+output = "model.h5"
+
+gdown.download(f"https://drive.google.com/uc?id={file_id}", output, quiet=False)
 model = tf.keras.models.load_model('model.h5')
 def preprocess_image(image, target_size):
     if image.mode != 'RGB':
